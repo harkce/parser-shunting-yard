@@ -13,25 +13,25 @@ valid = True
 conditional = False
 
 for x in numbers:
-	if isOp(x):											# cek apakah x operator atau proposisi
-		if not stackop:									# cek apakah list stackop kosong
-			stackop.append(x)							# tambahkan element ke stackop
-		else:											# kalo stackop nya engga empty
-			if x == 10:									# cek apakah x itu )
-				while stackop[-1] != 9:					# lakukan terus sampai ketemu (
+	if isOp(x):								# cek apakah x operator atau proposisi
+		if not stackop:							# cek apakah list stackop kosong
+			stackop.append(x)					# tambahkan element ke stackop
+		else:								# kalo stackop nya engga empty
+			if x == 10:						# cek apakah x itu )
+				while stackop[-1] != 9:				# lakukan terus sampai ketemu (
 					stackrs.append(stackop.pop())		# pop stackop, push ke stackrs
-				stackop.pop()							# pop stackop, ngepop si (
-			else:										# kalo x bukan ), berarti operator yg lain
+				stackop.pop()					# pop stackop, ngepop si (
+			else:							# kalo x bukan ), berarti operator yg lain
 				if (x > stackop[-1]) and (x != 9):		# kalo x lebih rendah prioritasnya dan bukan (
 					stackrs.append(stackop.pop())		# pop stackop, masukin ke stackrs
-				stackop.append(x)						# masukin x ke stackop
-	else:												# kalo bukan operator (proposisi)
-		stackrs.append(x)								# tinggal push ke stackrs
+				stackop.append(x)				# masukin x ke stackop
+	else:									# kalo bukan operator (proposisi)
+		stackrs.append(x)						# tinggal push ke stackrs
 		# if len(stackrs) > 1:
 		# 	if (stackrs[-1] == 1) and (stackrs[-2] == 1):
 		# 		valid = False
 
-while stackop:											# kalo stackop masih berisi
+while stackop:									# kalo stackop masih berisi
 	stackrs.append(stackop.pop())						# push sisanya ke stackrs
 
 while (valid) and (len(stackrs) > 1):
@@ -39,7 +39,7 @@ while (valid) and (len(stackrs) > 1):
 		i += 1
 	else:
 		i = 0
-	while (stackrs[i] == 1) and (valid):		# cari sampai ketemu operator
+	while (stackrs[i] == 1) and (valid):	# cari sampai ketemu operator
 		i += 1
 	if stackrs[i] == 2:			# kalo ketemu NOT
 		if stackrs[i - 1] == 1:
